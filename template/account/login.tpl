@@ -12,17 +12,17 @@
     <?php echo $breadcrumb['separator']; ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a>
     <?php } ?>
   </div>
-  <h1><?php echo $heading_title; ?></h1>
-  <div class="login-content">
-    <div class="left">
-      <h2><?php echo $text_new_customer; ?></h2>
+  <h2><?php echo $heading_title; ?></h2>
+  <div class="row">
+    <div class="span4">
+      <h3><?php echo $text_new_customer; ?></h3>
       <div class="content">
         <p><b><?php echo $text_register; ?></b></p>
         <p><?php echo $text_register_account; ?></p>
-        <a href="<?php echo $register; ?>" class="button"><?php echo $button_continue; ?></a></div>
+        <a href="<?php echo $register; ?>" class="btn"><?php echo $button_continue; ?></a></div>
     </div>
-    <div class="right">
-      <h2><?php echo $text_returning_customer; ?></h2>
+    <div class="span4">
+      <h3><?php echo $text_returning_customer; ?></h3>
       <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data">
         <div class="content">
           <p><?php echo $text_i_am_returning_customer; ?></p>
@@ -35,7 +35,7 @@
           <br />
           <a href="<?php echo $forgotten; ?>"><?php echo $text_forgotten; ?></a><br />
           <br />
-          <input type="submit" value="<?php echo $button_login; ?>" class="button" />
+          <input type="submit" value="<?php echo $button_login; ?>" class="btn" />
           <?php if ($redirect) { ?>
           <input type="hidden" name="redirect" value="<?php echo $redirect; ?>" />
           <?php } ?>

@@ -83,43 +83,51 @@ DD_belatedPNG.fix('#logo img');
 	   <?php echo $email; ?>
 	<?php } ?>
   </div>
+
+
+  <a class="brand" href="../">LOGO</a>
   -->
 
   <!-- MAIN MENU -->
   <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
      <div class="container">
-       <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-         <span class="icon-bar"></span>
-         <span class="icon-bar"></span>
-         <span class="icon-bar"></span>
-       </a>
-       <a class="brand" href="../">LOGO</a>
        <div class="nav-collapse collapse" id="main-menu">
         <ul class="nav" >
-          <li><a href="<?php echo $home; ?>"><?php echo $text_home; ?></a></li>
-          <li><a href="<?php echo $account; ?>"><?php echo $text_account; ?></a></li>
-          <? /* <li><a href="<?php echo $wishlist; ?>" id="wishlist-total"><?php echo $text_wishlist; ?></a></li> <li class="dropdown"><a href="<?php echo $checkout; ?>"><?php echo $text_checkout; ?></a></li>*/?>
-          <li><a href="<?php echo $compare; ?>" id="compare-total-header"><?php echo $text_compare; ?></a></li>
-          <li><a href="#" id="shopping_cart"><?php echo $text_shopping_cart; ?></a></li>
-          <li><a href="<?php echo $checkout; ?>"><?php echo $text_checkout; ?></a></li>
-          
-          <?php echo $language; ?>
-          <?php echo $currency; ?>
-          
+          <?php foreach ($categories as $category) {
+            if ( $category['active'] && $category['children'] ) { ?>
+              <li class="active dropdown">
+                <a href="<?php echo $category['href']; ?>" ><?php echo $category['name']; ?></a>
+             <?php } elseif ($category['active']){ ?>
+              <li class="active">
+                <a href="<?php echo $category['href']; ?>"><?php echo $category['name']; ?></a>
+             <?php } elseif ($category['children']){ ?>
+              <li class="dropdown">
+                <?// URI: echo $category['href'];?>
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#"><?php echo $category['name']; ?><b class="caret"></b></a>
+            <?php }
+            else { ?>
+              <li>
+                <a href="<?php echo $category['href']; ?>"><?php echo $category['name']; ?></a>
+            <?php }?>
+
+            <?php if ($category['children']) { ?>
+              <?php for ($i = 0; $i < count($category['children']);) { ?>
+              <ul class="dropdown-menu">
+                <?php $j = $i + ceil(count($category['children']) / $category['column']); ?>
+                <?php for (; $i < $j; $i++) { ?>
+                <?php if (isset($category['children'][$i])) { ?>
+                  <li><a href="<?php echo $category['children'][$i]['href']; ?>"><?php echo $category['children'][$i]['name']; ?></a></li>
+                <?php } ?>
+                <?php } ?>
+              </ul>
+              <?php } ?>
+            <?php } ?>
+          </li>
+
+          <?php } ?>
         </ul>
       </div>
-
-    <!-- search -->
-    <div class="navbar">
-      <form class="navbar-search pull-left" action="index.php" method="GET" style="position: absolute;">
-        <input type="hidden" name="route" value="product/search">
-        <input type="text" class="search-query span2" placeholder="Search" value="<?php echo $filter_name; ?>" name="filter_name">
-      </form>
-    </div>
-
-    
-
     </div>
   </div>
 </div>
@@ -131,42 +139,29 @@ DD_belatedPNG.fix('#logo img');
 <?php if ($categories) { ?>
 
 <div class="span12" style="margin-top:2.5em;">
-  <ul class="nav nav-pills" style="">
-    <?php foreach ($categories as $category) {
-      if ( $category['active'] && $category['children'] ) { ?>
-        <li class="active dropdown">
-  	      <a href="<?php echo $category['href']; ?>" ><?php echo $category['name']; ?></a>
-  	   <?php } elseif ($category['active']){ ?>
-  	    <li class="active">
-          <a href="<?php echo $category['href']; ?>"><?php echo $category['name']; ?></a>
-	     <?php } elseif ($category['children']){ ?>
-        <li class="dropdown">
-          <?// URI: echo $category['href'];?>
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#"><?php echo $category['name']; ?><b class="caret"></b></a>
-      <?php }
-      else { ?>
-        <li>
-          <a href="<?php echo $category['href']; ?>"><?php echo $category['name']; ?></a>
-      <?php }?>
+  <ul class="nav nav-pills">
+    <?/*Вывод языка и валюты
+    =$language; ?>
+    <?=$currency; */?>
+    <li><a href="<?php echo $home; ?>"><?php echo $text_home; ?></a></li>
+    <li><a href="<?php echo $account; ?>"><?php echo $text_account; ?></a></li>
+    <? /* <li><a href="<?php echo $wishlist; ?>" id="wishlist-total"><?php echo $text_wishlist; ?></a></li> <li class="dropdown"><a href="<?php echo $checkout; ?>"><?php echo $text_checkout; ?></a></li>*/?>
+    <li><a href="<?php echo $compare; ?>" id="compare-total-header"><?php echo $text_compare; ?></a></li>
+    <li><a href="#" id="shopping_cart"><?php echo $text_shopping_cart; ?></a></li>
+    <li><a href="<?php echo $checkout; ?>"><?php echo $text_checkout; ?></a></li>
+    
 
-      <?php if ($category['children']) { ?>
-        <?php for ($i = 0; $i < count($category['children']);) { ?>
-        <ul class="dropdown-menu">
-          <?php $j = $i + ceil(count($category['children']) / $category['column']); ?>
-          <?php for (; $i < $j; $i++) { ?>
-          <?php if (isset($category['children'][$i])) { ?>
-            <li><a href="<?php echo $category['children'][$i]['href']; ?>"><?php echo $category['children'][$i]['name']; ?></a></li>
-          <?php } ?>
-          <?php } ?>
-        </ul>
-        <?php } ?>
-      <?php } ?>
+    <!-- search -->
+    <li>
+      <form class="navbar-search pull-left" action="index.php" method="GET" >
+        <input type="hidden" name="route" value="product/search">
+        <input type="text" class="search-query span2" placeholder="Поиск" value="<?php echo $filter_name; ?>" name="filter_name">
+      </form>
     </li>
-
-    <?php } ?>
   </ul>
 </div>
 
 <?php } ?>
 <?php } ?>
+
 <div id="notification"></div>
