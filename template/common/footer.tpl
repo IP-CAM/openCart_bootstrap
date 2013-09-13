@@ -1,5 +1,5 @@
 
-<div class="span13">
+<div class="row">
     <div class="span4">
       <div class="well">
         <ul class="nav nav-list">
