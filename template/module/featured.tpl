@@ -1,10 +1,9 @@
 <?php if (($setting['position'] == 'content_top') || ($setting['position'] == 'content_bottom')){ ?>
-<div class="span12">
+<div class="row-fluid">
   <h3><?php echo $heading_title; ?></h3>
   <div class="box-content">
-    <div class="box-product">
       <?php foreach ($products as $product) { ?>
-        <div class="span2">
+        <div style="float: left; margin: 0 15px;">
           <!-- special -->
           <?php if ($product['special']) { /*<div class="sale"><?php echo $product['percent']; %</div>*/ } ?>
       	  
@@ -144,7 +143,6 @@
           */?>
       	</div>
       <?php } ?>
-    </div>
   </div>
 </div>
 <?php } else { ?>

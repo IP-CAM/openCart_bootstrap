@@ -96,9 +96,9 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </a>
-        <a href="#" class="brand">LOGO</a>
+        <a href="#" class="brand" style="margin-left: 2em;">LOGO</a>
         <div class="nav-collapse">
-          <ul class="nav">
+          <ul class="nav"  style="margin-left: 4em;">
             <li class="divider-vertical"></li>
             <li ><a href="<?=$home?>"><?=$text_home?></a></li>
 
