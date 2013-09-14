@@ -1,14 +1,17 @@
 <?php echo $header; ?><?php echo $column_left; ?><?php echo $column_right; ?>
-<div id="content"><?php echo $content_top; ?>
+<div class="content"><?php echo $content_top; ?>
+  <?/*
   <div class="breadcrumb">
     <?php foreach ($breadcrumbs as $breadcrumb) { ?>
     <?php echo $breadcrumb['separator']; ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a>
     <?php } ?>
   </div>
-  <h1><?php echo $heading_title; ?></h1>
-  <div class="border">
-  <div class="sitemap-info">
-    <div class="left">
+  */?>
+  
+
+  <div class="row offset1">
+    <h1><?php echo $heading_title; ?></h1>
+    <div class="span5">
       <ul>
         <?php foreach ($categories as $category_1) { ?>
         <li><a href="<?php echo $category_1['href']; ?>"><?php echo $category_1['name']; ?></a>
@@ -31,7 +34,7 @@
         <?php } ?>
       </ul>
     </div>
-    <div class="right">
+    <div class="span5">
       <ul>
         <li><a href="<?php echo $special; ?>"><?php echo $text_special; ?></a></li>
         <li><a href="<?php echo $account; ?>"><?php echo $text_account; ?></a>
@@ -57,6 +60,6 @@
       </ul>
     </div>
   </div>
-  </div>
+
   <?php echo $content_bottom; ?></div>
 <?php echo $footer; ?>
