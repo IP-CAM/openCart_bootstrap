@@ -2,9 +2,9 @@
 <?php if ($error_warning) { ?>
 <div class="warning"><?php echo $error_warning; ?></div>
 <?php } ?>
-<?php echo $column_left; ?><?php echo $column_right; ?>
+<?php echo $column_left; ?>
 
-<div class="container" style="margin-left: 20px;">
+<div class="container" style="">
   <?php echo $content_top; ?>
   <? /* #menu
   <div class="breadcrumb">
@@ -18,7 +18,7 @@
   <h3><?php echo $text_description; ?></h3>
   <div class="container">
     <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" class="form">
-    <div class="row">
+    <div class="row-fluid">
       <div class="span4" style="">
         <h4><?php echo $text_order; ?></h4>
           <div class="control-group <? if ($error_firstname){echo 'error';} ?>">
@@ -80,6 +80,8 @@
             </div>
           </div>
       </div>
+
+<?php echo $column_right; ?>
     </div>
     <div class="row" style="margin-top: -12em; ">
         <div class="span4" >
@@ -131,7 +133,7 @@
         </div>
     </div>
 
-    <div class="control-group " style="margin-left: 20px">
+    <div class="control-group " style="margin-left: 0px">
           <label class="control-label" for="com"><?php echo $entry_fault_detail; ?></label>
           <textarea id="com" name="comment" cols="150" rows="6" style="width: 56%;"><?php echo $comment; ?></textarea>
       
@@ -148,10 +150,10 @@
             </div>
           </div>
     </div>
+
     </form>
   </div>
 </div>
-
 
 
 

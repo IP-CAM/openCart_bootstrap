@@ -1,27 +1,36 @@
 <?php echo $header; ?>
 <?php if ($success) { ?>
-<div class="success"><?php echo $success; ?></div>
+  <div class="success"><?php echo $success; ?></div>
 <?php } ?>
 <?php if ($error_warning) { ?>
-<div class="warning"><?php echo $error_warning; ?></div>
+  <div class="warning"><?php echo $error_warning; ?></div>
 <?php } ?>
-<?php echo $column_left; ?><?php echo $column_right; ?>
-<div id="content"><?php echo $content_top; ?>
+
+<?php echo $column_left; ?>
+
+<div class="container">
+  <?php echo $content_top; ?>
+  
+  <?/*
   <div class="breadcrumb">
     <?php foreach ($breadcrumbs as $breadcrumb) { ?>
     <?php echo $breadcrumb['separator']; ?><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a>
     <?php } ?>
   </div>
-  <h2><?php echo $heading_title; ?></h2>
-  <div class="row">
-    <div class="span4">
+    <h2><?php echo $heading_title; ?></h2>
+  */?>
+
+
+  <div class="row-fluid">
+    <div class="span3">
       <h3><?php echo $text_new_customer; ?></h3>
       <div class="content">
         <p><b><?php echo $text_register; ?></b></p>
         <p><?php echo $text_register_account; ?></p>
         <a href="<?php echo $register; ?>" class="btn"><?php echo $button_continue; ?></a></div>
     </div>
-    <div class="span4">
+    
+    <div class="span6">
       <h3><?php echo $text_returning_customer; ?></h3>
       <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data">
         <div class="content">
@@ -42,8 +51,10 @@
         </div>
       </form>
     </div>
+    <?php echo $column_right; ?>
   </div>
-  <?php echo $content_bottom; ?></div>
+  <?php echo $content_bottom; ?>
+</div>
 <script type="text/javascript"><!--
 $('#login input').keydown(function(e) {
 	if (e.keyCode == 13) {

@@ -80,14 +80,34 @@
 	<?php } ?>
   </div>
 
-
+            <?/* Multi-level dropdown
+            <li class="dropdown">
+              <a data-toggle="dropdown" class="dropdown-toggle" href="#">Dropdown <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li class="dropdown-submenu">
+                  <a href="#">More options</a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Second level link</a></li>
+                    <li><a href="#">Second level link</a></li>
+                    <li><a href="#">Second level link</a></li>
+                    <li><a href="#">Second level link</a></li>
+                    <li><a href="#">Second level link</a></li>
+                  </ul>
+                </li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li class="divider"></li>
+                <li class="nav-header">Nav header</li>
+                <li><a href="#">Separated link</a></li>
+                <li><a href="#">One more separated link</a></li>
+              </ul>
+            </li>
+            */?>
   <a class="brand" href="../">LOGO</a>
   -->
 
   <!-- MAIN MENU -->
-
-
-
+<?/*
 <div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
       <div class="container-fluid">
@@ -136,29 +156,7 @@
             </li>
           <?php } ?>
 
-            <?/* Multi-level dropdown
-            <li class="dropdown">
-              <a data-toggle="dropdown" class="dropdown-toggle" href="#">Dropdown <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li class="dropdown-submenu">
-                  <a href="#">More options</a>
-                  <ul class="dropdown-menu">
-                    <li><a href="#">Second level link</a></li>
-                    <li><a href="#">Second level link</a></li>
-                    <li><a href="#">Second level link</a></li>
-                    <li><a href="#">Second level link</a></li>
-                    <li><a href="#">Second level link</a></li>
-                  </ul>
-                </li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li class="divider"></li>
-                <li class="nav-header">Nav header</li>
-                <li><a href="#">Separated link</a></li>
-                <li><a href="#">One more separated link</a></li>
-              </ul>
-            </li>
-            */?>
+
 
             <li class="divider-vertical"></li>
             <?=$language;?>
@@ -235,9 +233,93 @@
 
   </div>
 </div>
-  */?>
+*/?>
+<div class="container-fluid" style="margin-top: 1em;">
+  <div class="navbar">
+    <div class="navbar-inner">
+        <div>
+          <a data-target=".nav-collapse" data-toggle="collapse" class="btn btn-navbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a href="#" class="brand" >LOGO</a>
+          <!-- <div class="nav-collapse"> -->
+            <ul class="nav">
+              <li class="divider-vertical"></li>
+              <li ><a href="<?=$home?>"><?=$text_home?></a></li>
+
+              <?php foreach ($categories as $category) {
+                ?><li class="divider-vertical"></li><?
+              if ( $category['active'] && $category['children'] ) { ?>
+                <li class="active dropdown">
+                  <a href="<?php echo $category['href']; ?>" ><?php echo $category['name']; ?></a>
+               <?php } elseif ($category['active']){ ?>
+                <li class="active">
+                  <a href="<?php echo $category['href']; ?>"><?php echo $category['name']; ?></a>
+               <?php } elseif ($category['children']){ ?>
+                <li class="dropdown">
+                  <?// URI: echo $category['href'];?>
+                  <a class="dropdown-toggle" data-toggle="dropdown" href="#"><?php echo $category['name']; ?><b class="caret"></b></a>
+              <?php }
+              else { ?>
+                <li class="dropdown">
+                  <a href="<?php echo $category['href']; ?>"><?php echo $category['name']; ?></a>
+                </li>
+                <?php }?>
+
+                <?php if ($category['children']) { ?>
+                  <?php for ($i = 0; $i < count($category['children']);) { ?>
+                    <ul class="dropdown-menu">
+                      <?php $j = $i + ceil(count($category['children']) / $category['column']); ?>
+                      <?php for (; $i < $j; $i++) { ?>
+                        <?php if (isset($category['children'][$i])) { ?>
+                          <li><a href="<?php echo $category['children'][$i]['href']; ?>"><?php echo $category['children'][$i]['name']; ?></a></li>
+                        <?php } ?>
+                      <?php } ?>
+                    </ul>
+                  <?php } ?>
+                <?php } ?>
+              </li>
+            <?php } ?>
 
 
+
+              <li class="divider-vertical"></li>
+              <?#=$language;?>
+              <?#=$currency;?>
+              <?=$cart;?>
+
+              
+            </ul>
+            <ul class="nav pull-right">
+              <!--SEARCH -->
+              <li>
+              <form action="index.php" method="GET" class="form-search" style="margin: 5px;">
+                <input type="hidden" name="route" value="product/search">
+                <div class="input-append">
+                   <input type="text" class="search-query span2" placeholder="Поиск" value="<?php echo $filter_name; ?>" name="filter_name">
+                  <button type="submit" class="btn"> Поиск</button>
+                </div>
+              </form>
+              </li>
+              <li class="divider-vertical"></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $text_account; ?><b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="<?php echo $account; ?>"><?php echo $text_account; ?></a></li>
+                  <li><a href="<?php echo $wishlist; ?>" id="wishlist-total"><?php echo $text_wishlist; ?></a></li>
+                  <li><a href="<?php echo $compare; ?>" id="compare-total-header"><?php echo $text_compare; ?></a></li>
+                  
+                  <li class="divider"></li>
+                  <li><a href="<?php echo $checkout; ?>"><?php echo $text_checkout; ?></a></li>
+                  <li><a href="#" id="shopping_cart"><?php echo $text_shopping_cart; ?></a></li>
+                </ul>
+              </li>
+            </ul>
+          <!-- </div>/.nav-collapse -->
+        </div>
+    </div>
+  </div>
+</div>
 <div id="notification"></div>
-<div style="margin-top: 4em; height: 1px;"></div>
-

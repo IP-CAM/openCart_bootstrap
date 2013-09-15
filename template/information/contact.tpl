@@ -1,6 +1,7 @@
-<?php echo $header; ?><?php echo $column_left; ?><?php echo $column_right; ?>
-<div class="span12"><?php echo $content_top; ?>
-  
+<?php echo $header; ?>
+<?php echo $column_left; ?><?php echo $column_right; ?>
+<?php echo $content_top; ?>
+ <div class="container">  
 <?/* Скрываем breadcrumb
   <div class="span12">
     <?php foreach ($breadcrumbs as $breadcrumb) { ?>
@@ -11,7 +12,7 @@
     */?>
   <h2><?php echo $heading_title; ?></h2>
   
-  <div class="row">
+  <div class="row-fluid">
     <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" class="form-horizontal">
       <fieldset>
         <div class="span7">
@@ -59,10 +60,11 @@
                 <img src="index.php?route=information/contact/captcha" alt="" />
                 <input type="text" name="captcha" id="focusedMail" class="input focused" placeholder="captcha" value="<?php echo $captcha; ?>" style="width: 8em;">
                 <?php if ($error_captcha) { ?> <span class="help-inline"><?php echo $error_captcha; ?></span> <? } ?>
+                <input type="submit" value="<?php echo $button_continue; ?>" class="btn btn-primary" />
               </div>
             </div>
 
-            <input type="submit" value="<?php echo $button_continue; ?>" class="btn btn-primary" style="float: right; margin-right: 5.5em; margin-top: -2em;"/>
+            
           </div>
       </div>
 
@@ -88,5 +90,5 @@
     </form>
   </div>
 </div>
-<?php echo $content_bottom; ?></div>
+<?php echo $content_bottom; ?>
 <?php echo $footer; ?>
